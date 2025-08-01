@@ -1,0 +1,3 @@
+const ProductGrid = () => {
+    return null;
+}
