@@ -60,7 +60,7 @@ export default function AddProduct() {
 
 
     return (
-        <section className="min-h-1/2">
+        <section className="min-h-1/2 px-4">
             <div className="size-full flex flex-col gap-5 items-center justify-center">
 
                 <h1 className="text-2xl lg:text-3xl mt-5">Create Product Form</h1>

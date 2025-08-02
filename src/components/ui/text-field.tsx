@@ -85,7 +85,7 @@ export default function TextField<T extends FieldValues>(
         <div className="space-y-4">
             <label
                 htmlFor={name}
-                className="capitalize tracking-wide block text-sm font-medium text-gray-700 mb-1"
+                className="capitalize tracking-wide block text-md text-gray-700 mb-1"
             >
                 {displayLabel}
                 {required && <span className="text-red-500 ml-1">*</span>}

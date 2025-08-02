@@ -13,8 +13,7 @@ export default function HomeContent() {
 
             <CategorySelector
                 onSelectCategory={setSelectedCategory}
-                selectedCategory={selectedCategory}
-            />
+                selectedCategory={selectedCategory} />
 
             <main className="flex-1 p-4">
                 <ProductGrid category={selectedCategory} />
