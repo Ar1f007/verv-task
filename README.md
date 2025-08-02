@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Live [Link](https://verv-task.vercel.app/)
 
-## Getting Started
+## Features
 
-First, run the development server:
+- Product listing 
+- Category filtering
+- Client-side search with debounce
+- Sorting by price and rating (low to high, high to low, default)
+- Responsive pagination with item count and items per page selector
+- Add to cart functionality with global state and cart items quantity increment/decrement support
+- Product creation form (add product) with validation
+- Accessible (A11y-friendly) UI
+- Skeleton loaders for optimized UX during fetch
+- Fully responsive layout for mobile and desktop
+- Clean, modular, and fully type-safe component architecture
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
+- Next js 
+- Tanstack Query
+- Tailwind css
+- Typescript
+- Zustand
+- React Hook Form
+- Zod
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup Instructions
+- Clone repo
+    ```bash
+    git clone git@github.com:Ar1f007/verv-task.git
+    cd verb-task
+    ```
+- Install Dependencies
+    ```bash
+    pnpm install
+    ```
+- Run dev server
+    ```bash
+    pnpm dev
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design Decisions
+- Modular components: Feature-specific components are organized within their respective module directories for clarity and scalability.
+- Client-side filtering: Since the API lacks native search/filtering support, debounce-based client-side filtering was implemented for optimized performance.
+- Global State with Zustand: A lightweight and efficient choice for managing cart state globally.
+- Skeleton Loading: Used to enhance perceived performance and eliminate layout shifts during data fetch.
+- Toast Notifications: Feedback is provided on cart actions for better UX.
+- Adaptive Categories UI:
+    - Mobile: Horizontally scrollable sticky category bar.
+    - Desktop: Vertically sticky category sidebar.
+- Pagination: Custom pagination with support for selecting items per page, displaying current range info (e.g., “Showing 1–8 of 20”), and page navigation.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Form Handling:
+    - Used react-hook-form for performant and scalable form handling.
+    - Used zod for schema validation. 
+    - Created reusable TextField and SelectField components to standardize form inputs across the app.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## What could be improved
+- URL-based Filtering: Current filtering is done client-side only. Lifting search, sort, and pagination states into the URL (via query params) would improve UX and shareability.
+- Testing: Add unit and integration tests using tools like Jest and React Testing Library to ensure robustness and maintainability.
