@@ -7,7 +7,6 @@ import CategorySelector from "./category-selector";
 export default function HomeContent() {
     const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-
     return (
         <section className="flex flex-col md:flex-row min-h-screen">
 

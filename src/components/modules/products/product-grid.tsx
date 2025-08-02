@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query"
 
 import { productService } from "@/lib/services/product"
@@ -9,6 +9,7 @@ import ProductsSkeleton from "./product-skeleton";
 import NoProductState from "./no-product";
 import ProductList from "./product-list";
 import SortMenu, { SortOption } from "./sort-menu";
+import Pagination from "./pagination";
 
 
 interface ProductGridProps {
@@ -17,7 +18,6 @@ interface ProductGridProps {
 
 
 const ProductGrid = ({ category }: ProductGridProps) => {
-
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['products', category],
@@ -29,11 +29,15 @@ const ProductGrid = ({ category }: ProductGridProps) => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("default");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
 
+  // search
   const filteredData = (data || []).filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // sort
   const sortedData = [...filteredData].sort((a, b) => {
     switch (sortOption) {
       case "price_asc":
@@ -48,6 +52,19 @@ const ProductGrid = ({ category }: ProductGridProps) => {
         return 0;
     }
   });
+
+  // pagination
+  const totalItems = sortedData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const paginatedData = sortedData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, sortOption, itemsPerPage, data]);
 
   return (
     <section>
@@ -65,10 +82,19 @@ const ProductGrid = ({ category }: ProductGridProps) => {
             : !data || data.length === 0
               ? <NoProductState />
               : sortedData.length > 0
-                ? <ProductList products={sortedData} />
+                ? <>
+                  <ProductList products={paginatedData} />
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    totalItems={totalItems}
+                    itemsPerPage={itemsPerPage}
+                    onPageChange={setCurrentPage}
+                    onItemsPerPageChange={setItemsPerPage}
+                  />
+                </>
                 : <NoProductState hint="Try searching with a different keyword." />
       }
-
     </section>
   )
 }
