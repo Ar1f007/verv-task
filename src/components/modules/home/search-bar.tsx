@@ -30,16 +30,18 @@ export default function Searchbar({
 
 
     return (
-        <div className="mb-4 w-full max-w-lg relative">
+        <div className="relative mb-4 max-w-lg">
+            <SearchIcon
+                aria-hidden
+                className="absolute top-1/2 left-2 -translate-y-1/2 text-gray-400 pointer-events-none"
+            />
             <input
                 type="text"
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
-                placeholder="Search products..."
-                className="w-full border border-gray-200 rounded-md pl-8 h-12 bg-white"
+                onChange={e => setValue(e.target.value)}
+                placeholder="Search products"
+                className="w-full pl-10 pr-4 py-2 h-12 border border-gray-300 rounded-md focus:outline-2 focus:outline-gray-800 focus:outline-offset-2"
             />
-
-            <SearchIcon aria-hidden className="absolute top-1/2 -translate-y-1/2 left-2 text-gray-400 focus-visible:outline-offset-2 focus-visible:outline-offset-gray-200" />
         </div>
     );
 }
