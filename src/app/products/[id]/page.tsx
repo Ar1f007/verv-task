@@ -7,12 +7,14 @@ import AddToCartButton from "@/components/modules/cart/cart-add-btn";
 import { formatPrice } from "@/lib/utils";
 
 interface ProductDetailProps {
-  params: { id: string };
+  params: Promise<{ "id": string | undefined }>
 }
 
 export default async function ProductPage({ params }: ProductDetailProps) {
-  const product = await productService.getById(params.id);
+  const productId = (await params).id;
+  if (!productId) return notFound();
 
+  const product = await productService.getById(productId);
   if (!product) return notFound();
 
   return (
