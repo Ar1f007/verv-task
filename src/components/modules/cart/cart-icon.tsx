@@ -15,7 +15,7 @@ export default function CartIcon() {
       </span>
       {count > 0 && (
         <span 
-        className="absolute top-5 -right-2 bg-red-500 text-white text-[10px] font-semibold size-5 rounded-full flex items-center justify-center"
+        className="absolute -top-2.5 -right-2 bg-red-500 text-white text-[10px] font-semibold size-5 rounded-full flex items-center justify-center"
         aria-hidden
         >
           {count}
