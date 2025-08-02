@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import { ShoppingBagIcon, Trash2Icon } from "lucide-react";
+import { MinusCircleIcon, MinusIcon, PlusCircleIcon, PlusIcon, ShoppingBagIcon, Trash2Icon } from "lucide-react";
 
 import { useCart } from "@/lib/store/cart";
 import { Product } from "@/lib/types/product";
@@ -12,7 +12,7 @@ import { ROUTES } from "@/lib/constants";
 
 
 export default function CartPage() {
-    const { items, remove, clear, getTotal } = useCart();
+    const { items, remove, clear, getTotal, increase, decrease } = useCart();
 
     if (items.length === 0) {
         return (
@@ -34,7 +34,7 @@ export default function CartPage() {
         toast.success("Item removed");
     }
 
-    const handleCheckout = () => {
+    function handleCheckout() {
         toast.success("Thank you for shopping with verv");
         clear();
     };
@@ -65,6 +65,33 @@ export default function CartPage() {
                                 <p className="text-md text-gray-500">
                                     {formatPrice(item.price)} × {item.quantity}
                                 </p>
+
+                                {/* Item inc-dec */}
+                                <div className="flex items-center gap-1 mt-2" aria-label={`Quantity controls for ${item.title}`}>
+                                    <button
+                                        onClick={() => {
+                                            decrease(item.id);
+
+                                            if (item.quantity <= 1) {
+                                                toast.error("Item removed");
+                                            }
+                                        }}
+                                        className="text-gray-700 hover:text-gray-900 transition cursor-pointer border border-gray-300 rounded"
+                                        aria-label={`Decrease quantity for ${item.title}`}
+                                    >
+                                        <MinusIcon className="size-6" aria-hidden />
+                                    </button>
+                                    <span className="w-8 text-center text-lg" aria-live="polite">
+                                        {item.quantity}
+                                    </span>
+                                    <button
+                                        onClick={() => increase(item.id)}
+                                        className="text-gray-700 hover:text-gray-900 transition cursor-pointer border border-gray-300 rounded"
+                                        aria-label={`Increase quantity for ${item.title}`}
+                                    >
+                                        <PlusIcon className="size-6" aria-hidden />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div className="flex items-center justify-between md:justify-end gap-4">
