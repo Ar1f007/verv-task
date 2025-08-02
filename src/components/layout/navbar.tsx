@@ -1,6 +1,8 @@
-import { MenuIcon, ShoppingBagIcon } from "lucide-react";
 import Link from "next/link";
+
 import CartIcon from "../modules/cart/cart-icon";
+import { ROUTES } from "@/lib/constants";
+
 
 const Navbar = () => {
 
@@ -8,14 +10,14 @@ const Navbar = () => {
         <header className="h-20 bg-card shadow-xs">
             <nav className="container mx-auto h-full flex justify-between gap-1 px-4">
                 <div className="flex items-center">
-                    <Link href="/">
+                    <Link href={ROUTES.home}>
                         <strong className="text-xl uppercase font-bold">Verv</strong>
                     </Link>
                 </div>
                 <ul className="hidden md:flex md:items-center md:gap-5">
                     <li>
                         <Link
-                            href="/"
+                            href={ROUTES.home}
                             className="uppercase hover:underline font-medium tracking-wide whitespace-nowrap"
                         >
                             All Products
@@ -23,7 +25,7 @@ const Navbar = () => {
                     </li>
                     <li>
                         <Link
-                            href="add-product"
+                            href={ROUTES.addProduct}
                             className="uppercase hover:underline font-medium tracking-wide whitespace-nowrap"
                         >
                             Add Product

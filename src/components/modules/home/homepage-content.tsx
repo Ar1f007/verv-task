@@ -11,7 +11,10 @@ export default function HomeContent() {
     return (
         <section className="flex flex-col md:flex-row min-h-screen">
 
-            <CategorySelector onSelectCategory={setSelectedCategory} selectedCategory={selectedCategory} />
+            <CategorySelector
+                onSelectCategory={setSelectedCategory}
+                selectedCategory={selectedCategory}
+            />
 
             <main className="flex-1 p-4">
                 <ProductGrid category={selectedCategory} />

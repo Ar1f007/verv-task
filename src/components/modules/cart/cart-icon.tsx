@@ -9,9 +9,15 @@ export default function CartIcon() {
 
   return (
      <Link href="/cart" className="flex items-center relative">
-      <ShoppingCart className="w-6 h-6" />
+      <ShoppingCart className="size-6" aria-hidden />
+      <span className="sr-only">
+        Cart with ${count} item {count === 1 ? '' : 's'}
+      </span>
       {count > 0 && (
-        <span className="absolute top-5 -right-2 bg-red-500 text-white text-[10px] font-semibold w-5 h-5 rounded-full flex items-center justify-center">
+        <span 
+        className="absolute top-5 -right-2 bg-red-500 text-white text-[10px] font-semibold size-5 rounded-full flex items-center justify-center"
+        aria-hidden
+        >
           {count}
         </span>
       )}

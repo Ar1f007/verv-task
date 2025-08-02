@@ -22,7 +22,7 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
       onClick={() => handleAddProduct(product)}
       className="cursor-pointer inline-flex justify-center items-center gap-2 px-4 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition"
     >
-      <ShoppingCart size={16} />
+      <ShoppingCart size={16} aria-hidden />
       Add to Cart
     </button>
   );
