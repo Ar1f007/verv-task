@@ -58,7 +58,7 @@ export default function CategorySelector({
                 key={`${cat}-${idx}`}
                 onClick={() => onSelectCategory(cat)}
                 aria-pressed={selectedCategory === cat}
-                className={`w-full text-left px-4 py-2 rounded-md transition ${
+                className={`cursor-pointer w-full text-left px-4 py-2 rounded-md transition ${
                   selectedCategory === cat
                     ? "bg-gray-200 font-semibold"
                     : "hover:bg-gray-100"
