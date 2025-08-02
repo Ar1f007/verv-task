@@ -5,8 +5,7 @@ import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 export default function CartIcon() {
-  const items = useCart((state) => state.items);
-  const count = items.reduce((sum, i) => sum + i.quantity, 0);
+  const count = useCart((state) => state.getCount());
 
   return (
      <Link href="/cart" className="flex items-center relative">
