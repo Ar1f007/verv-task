@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useQuery } from "@tanstack/react-query"
 
 import Skeleton from "@/components/ui/skeleton";
 import { productService } from "@/lib/services/product"
-import Link from "next/link";
+import { formatPrice } from "@/lib/utils";
+import AddToCartButton from "../cart/cart-add-btn";
 
 
 interface ProductGridProps {
@@ -56,10 +58,13 @@ const ProductGrid = ({ category }: ProductGridProps) => {
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {data.map((product) => (
-        <li key={product.id}>
+        <li 
+        key={product.id}
+        className="flex flex-col gap-2 border border-gray-300 rounded-xl p-4 hover:shadow-md transition"
+        >
           <Link
             href={`/products/${product.id}`}
-            className="flex flex-col gap-2 size-full justify-between border border-gray-300 rounded-xl p-4 hover:shadow transition"
+            className="flex flex-col gap-2 size-full justify-between"
           >
             <img
               src={product.image}
@@ -68,12 +73,13 @@ const ProductGrid = ({ category }: ProductGridProps) => {
             />
             <h3 className="text-sm font-semibold line-clamp-2">{product.title}</h3>
             <div className="flex justify-between items-center gap-1 mt-auto">
-              <p className="font-bold text-md">৳{product.price}</p>
+              <p className="font-bold text-md">{formatPrice(product.price)}</p>
               <span className="text-xs font-medium text-gray-800 bg-gray-200 px-2 py-0.5 rounded-full">
                 {product.category}
               </span>
             </div>
           </Link>
+          <AddToCartButton product={product} />
         </li>
       ))}
     </ul>
