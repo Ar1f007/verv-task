@@ -1,3 +1,4 @@
+import { ProductInputs } from "@/app/products/add/page";
 import { apiClient } from "../client/api-client"
 import { Product } from "../types/product";
 
@@ -18,7 +19,7 @@ export const productService = {
         return apiClient.get<Product[]>(`/products/category/${category}`);
     },
 
-    async create(productData: Omit<Product, 'id' | 'rating'>): Promise<Product> {
+    async create(productData: ProductInputs): Promise<Product> {
         return apiClient.post<Product>('/products', productData);
     },
 }
