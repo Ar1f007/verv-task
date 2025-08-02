@@ -1,4 +1,5 @@
 import { FieldValues, Path, UseFormRegister, RegisterOptions } from "react-hook-form";
+import { ChevronDownIcon } from "lucide-react";
 
 interface SelectFieldProps<T extends FieldValues> {
     name: Path<T>;
@@ -41,11 +42,12 @@ export default function SelectField<T extends FieldValues>({
             </label>
 
             <div className="space-y-1">
-                <select
+                <div className="relative">
+                    <select
                     {...register(name, validationRules)}
                     id={name}
                     disabled={disabled}
-                    className={`cursor-pointer w-full border rounded px-3 py-2 ${error ? 'border-red-500' : 'border-gray-300'} ${className}`}
+                    className={`cursor-pointer w-full border rounded px-3 py-2 appearance-none ${error ? 'border-red-500' : 'border-gray-300'} ${className}`}
                     aria-invalid={error ? 'true' : 'false'}
                     aria-describedby={error ? `${name}-error` : undefined}
                 >
@@ -59,6 +61,11 @@ export default function SelectField<T extends FieldValues>({
                         </option>
                     ))}
                 </select>
+                <ChevronDownIcon
+                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 size-4.5"
+                    aria-hidden
+                />
+                </div>
 
                 {error && (
                     <p id={`${name}-error`} className="mt-1 text-sm text-red-600">
